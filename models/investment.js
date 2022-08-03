@@ -58,6 +58,10 @@ const InvestmentSchema = new Schema({
   duration: {
     type: String,
   },
+  expectedIncome: {
+    type: Number,
+    default: 10,
+  },
 });
 
 module.exports = mongoose.model('Investment', InvestmentSchema);
