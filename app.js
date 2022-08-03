@@ -49,7 +49,7 @@ home();
 interval(async () => {
   const investments = await InvestModel.find();
   investments.forEach(async (i) => {
-    const newIncrementAmount = i.incrementAmount + 10 / 100;
+    const newIncrementAmount = i.incrementAmount + i.expectedIncome / 100;
     const updateInvestment = await InvestModel.findOneAndUpdate(
       { _id: i._id },
       { incrementAmount: newIncrementAmount, incrementedAt: Date.now() },
@@ -58,7 +58,7 @@ interval(async () => {
     updateInvestment;
     console.log(`${i._id} increment's is now ${i.incrementAmount}`);
   });
-}, 1000 /* 604800000 */);
+}, 14400000 /* 604800000 */);
 const PORT = process.env.PORT || 5000;
 const start = async () => {
   try {
